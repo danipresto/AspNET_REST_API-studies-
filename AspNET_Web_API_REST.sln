@@ -3,7 +3,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.1.32228.430
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AspNET_Web_API_REST", "AspNET_Web_API_REST\AspNET_Web_API_REST.csproj", "{3A12ABFC-967E-4D84-8FE1-54FB99645E99}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AspNET_Web_API_REST", "AspNET_Web_API_REST\AspNET_Web_API_REST.csproj", "{3A12ABFC-967E-4D84-8FE1-54FB99645E99}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PersonAPITest", "PersonAPITest\PersonAPITest.csproj", "{44660B46-A1C3-4166-A2CE-22B57017DC32}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,6 +17,10 @@ Global
 		{3A12ABFC-967E-4D84-8FE1-54FB99645E99}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{3A12ABFC-967E-4D84-8FE1-54FB99645E99}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{3A12ABFC-967E-4D84-8FE1-54FB99645E99}.Release|Any CPU.Build.0 = Release|Any CPU
+		{44660B46-A1C3-4166-A2CE-22B57017DC32}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{44660B46-A1C3-4166-A2CE-22B57017DC32}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{44660B46-A1C3-4166-A2CE-22B57017DC32}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{44660B46-A1C3-4166-A2CE-22B57017DC32}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
