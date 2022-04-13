@@ -5,7 +5,7 @@ using PersonAPITest.Services;
 namespace PersonAPITest.Controllers
 {
     [ApiController]
-    [Route("[controller]")]
+    [Route("API/[controller]")]
     public class PersonController : ControllerBase
     {
         
