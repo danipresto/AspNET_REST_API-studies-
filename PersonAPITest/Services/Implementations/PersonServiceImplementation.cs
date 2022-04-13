@@ -1,68 +1,74 @@
 ﻿using PersonAPITest.Model;
+using PersonAPITest.Model.Context;
 
 namespace PersonAPITest.Services.Implementations
 {
     public class PersonServiceImplementation : IPersonService
     {
 
-        private volatile int count;
+        private PgContext _context;
+
+        public PersonServiceImplementation(PgContext context)
+        {
+            _context = context;
+        }
+
         public Person Create(Person person)
         {
-            return person;
+            try
+            {
+                _context.Add(person);
+                _context.SaveChanges();
+            }
+            catch (Exception ex)
+            {
+                throw;
+            }
+            return person;  
         }
+
 
         public void Delete(long id)
         {
-            
+            var result = _context.Persons.SingleOrDefault(p => p.Id.Equals(id));
+            if(result != null)
+            {
+                try
+                {
+                    _context.Persons.Remove(result);
+                    _context.SaveChanges();
+                }
+                catch(Exception ex)
+                {
+                    throw;
+                }
+            }
         }
+
 
         public List<Person> FindAll()
         {
-            List<Person> persons = new List<Person>();
-            for(int i = 0; i < 5; i++)
-            {
-                Person person = MockPerson(i);
-                persons.Add(person);
-               
-            }
-
-            return persons;
+            return _context.Persons.ToList();
         }
+
 
         public Person FindById(long id)
         {
-            return new Person
-            {
-                Id = 01,
-                Age = 35,
-                FirstName = "Leandver",
-                LastName = "Dust",
-                Address = "Oslo - Norway",
-                Gender = "Male",
-            };
+            return _context.Persons.SingleOrDefault(p => p.Id.Equals(id));
         }
 
         public Person Update(Person person)
         {
-            return person;
-        }
-
-        private Person MockPerson(int i)
-        {
-            return new Person
+            try
             {
-                Id = IncrementAndGet(),
-                Age = 35 + i,
-                FirstName = "Mperson" + i,
-                LastName = "Mock" + i,
-                Address = "Mock Address" + i,
-                Gender = "Mock"
-            };
-        }
-
-        private int IncrementAndGet()
-        {
-            return Interlocked.Increment(ref count);    
+                _context.Add(person);
+                _context.SaveChanges();
+            }
+            catch (Exception ex)
+            {
+                throw;
+            }
+            return person;
         }
     }
 }
