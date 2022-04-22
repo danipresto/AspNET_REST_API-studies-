@@ -5,12 +5,13 @@ using PersonAPITest.Services;
 namespace PersonAPITest.Controllers
 {
     [ApiController]
-    [Route("API/[controller]")]
+    [Route("api/[controller]")]
     public class PersonController : ControllerBase
     {
         
         private readonly ILogger<PersonController> _logger;
         private IPersonService _personService;
+
         public PersonController(ILogger<PersonController> logger, IPersonService personService)
         {
             _logger = logger;
@@ -26,12 +27,9 @@ namespace PersonAPITest.Controllers
         [HttpGet("{id}")]
         public IActionResult Get(long id)
         {
-            var person = _personService.FindById(id); 
-            if(person == null)
-            {
-                return NotFound();
-            }
-            return Ok(person); 
+            var person = _personService.FindById(id);
+            if (person == null) return NotFound();
+            return Ok(person);
         }
 
         [HttpPost]

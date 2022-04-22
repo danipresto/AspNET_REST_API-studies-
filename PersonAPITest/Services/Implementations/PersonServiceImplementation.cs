@@ -24,21 +24,21 @@ namespace PersonAPITest.Services.Implementations
             {
                 throw;
             }
-            return person;  
+            return person;
         }
 
 
         public void Delete(long id)
         {
-            var result = _context.Persons.SingleOrDefault(p => p.Id.Equals(id));
-            if(result != null)
+            var result = _context.Person.SingleOrDefault(p => p.Id==id);
+            if (result != null)
             {
                 try
                 {
-                    _context.Persons.Remove(result);
+                    _context.Person.Remove(result);
                     _context.SaveChanges();
                 }
-                catch(Exception ex)
+                catch (Exception ex)
                 {
                     throw;
                 }
@@ -48,27 +48,34 @@ namespace PersonAPITest.Services.Implementations
 
         public List<Person> FindAll()
         {
-            return _context.Persons.ToList();
+            return _context.Person.ToList();
         }
 
 
         public Person FindById(long id)
         {
-            return _context.Persons.SingleOrDefault(p => p.Id.Equals(id));
+            return _context.Person.SingleOrDefault(p => p.Id == id);
         }
 
         public Person Update(Person person)
         {
-            try
+
+            var result = _context.Person.SingleOrDefault(p => p.Id == person.Id);
+            if (result != null)
             {
-                _context.Add(person);
-                _context.SaveChanges();
-            }
-            catch (Exception ex)
-            {
-                throw;
+                try
+                {
+                    _context.Entry(result).CurrentValues.SetValues(person);
+                    _context.SaveChanges();
+                }
+                catch (Exception)
+                {
+                    throw;
+                }
             }
             return person;
         }
+
+
     }
 }

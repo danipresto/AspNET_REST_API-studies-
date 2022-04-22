@@ -13,8 +13,8 @@ var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddScoped<IPersonService, PersonServiceImplementation>();
 builder.Services.AddControllers();
-builder.Services.AddDbContext<PgContext>(options =>
-                    options.UseNpgsql(builder.Configuration.GetConnectionString("PgContext"), builder => builder.MigrationsAssembly("PersonAPITest")));
+builder.Services.AddEntityFrameworkNpgsql().AddDbContext<PgContext>(options =>
+                    options.UseNpgsql("Host=localhost;Port=5432;Pooling=true;Database=aspnet_api;User Id=developer;Password=root;"));
 
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
